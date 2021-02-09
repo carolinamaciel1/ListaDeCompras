@@ -2,6 +2,7 @@ package com.example.listadecompras
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.*
 
 //A classe AppCompatActivity herda de Activity porém ela atinge uma quantidade maior de
@@ -33,8 +34,18 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-//        list_produtos.setOnLongClickListener { adapterView: Adapt
-//            erView<*>, view: View, position: Int, id: Long -> }
-//    }
+
+        list_produtos.setOnItemLongClickListener { _: AdapterView<*>, _: View, position: Int, _: Long ->
+            //buscando o item clicado
+            val item = produtos_adapter.getItem(position)
+
+            //removendo o item clicado da lista
+            produtos_adapter.remove(item)
+
+            Toast.makeText(this, "Item excluído!", Toast.LENGTH_SHORT).show()
+            //retorno indicando que o click foi realizado com sucesso
+
+            true
+        }
     }
 }
